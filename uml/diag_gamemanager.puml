@@ -1,0 +1,26 @@
+@startuml
+class GameManager {
+- Rect gameRect
+- Ship ship
+# LifesSprite lifesSprite
+# List<AShot> shotsUp
+# List<AShot> shotsDown
+# List<AEnemy> enemies
+# List<SpriteTemp> temps
++ int score
+- AppStatus appStatus
+- {static} Logger log
++ <<Create>> GameManager(Rect,AppStatus)
++ void start()
++ void nextLevel()
++ void sameLevel()
+- void clearLevel()
++ void finish()
++ int getWidth()
++ double getHeight()
++ int getLevel()
++ Ship getShip()
++ void shot()
++ void updateGame()
+}
+@enduml

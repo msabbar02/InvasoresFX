@@ -1,0 +1,16 @@
+@startuml
+class EnemySpawner {
++ {static} int n
++ {static} int m
++ {static} int vx
++ {static} int vy
++ {static} int ticks
+- {static} int getX(Rect,int)
+- {static} int getY(Rect,int)
++ {static} List<AEnemy> createEnemies(Rect,int)
++ {static} EnemyShip createEnemyShip(EEnemyType,Image,Rect,int,int,int,int,EEnemyShot)
++ {static} List<AEnemy> crearEnemigosNivelDonut(Rect)
++ {static} List<AEnemy> crearEnemigosNivelPaquito(Rect)
++ {static} List<AEnemy> crearEnemigosNivelPulpo(Rect)
+}
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+class Exec {
++ {static} String getGitUserName()
+}
+class Rect {
++ int left
++ int top
++ int right
++ int bottom
++ <<Create>> Rect()
++ <<Create>> Rect(int,int,int,int)
++ <<Create>> Rect(Rect)
++ {static} Rect copyOrNull(Rect)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
++ boolean isEmpty()
++ boolean isValid()
++ int width()
++ int height()
++ int centerX()
++ int centerY()
++ float exactCenterX()
++ float exactCenterY()
++ void setEmpty()
++ void set(int,int,int,int)
++ void set(Rect)
++ void offset(int,int)
++ boolean contains(int,int)
++ boolean contains(int,int,int,int)
++ boolean contains(Rect)
++ boolean intersect(int,int,int,int)
++ boolean intersect(Rect)
++ boolean intersects(int,int,int,int)
++ {static} boolean intersects(Rect,Rect)
++ void union(int,int,int,int)
++ void union(Rect)
++ void union(int,int)
++ void sort()
++ void scale(float)
+}
+@enduml

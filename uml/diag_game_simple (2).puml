@@ -1,0 +1,108 @@
+@startuml
+class GameManager {
+- Rect gameRect
+- Ship ship
+# LifesSprite lifesSprite
+# List<AShot> shotsUp
+# List<AShot> shotsDown
+# List<AEnemy> enemies
+# List<SpriteTemp> temps
++ int score
+- AppStatus appStatus
+- {static} Logger log
++ <<Create>> GameManager(Rect,AppStatus)
++ void start()
++ void nextLevel()
++ void sameLevel()
+- void clearLevel()
++ void finish()
++ int getWidth()
++ double getHeight()
++ int getLevel()
++ Ship getShip()
++ void shot()
++ void updateGame()
+}
+class AppInvasoresFx {
+- {static} GraphicsContext gc
+- {static} GameManager gameManager
+- {static} Rect gameRect
+- long deltaTime
+- {static} Renderer renderer
+- {static} BooleanProperty wPressed
+- {static} BooleanProperty aPressed
+- {static} BooleanProperty sPressed
+- {static} BooleanProperty dPressed
+- {static} BooleanProperty shotReleased
+- {static} AppStatus appStatus
+- {static} Logger log
++ {static} void main(String[])
++ void start(Stage)
+- void setup(Stage)
+- {static} void setEventActions(Scene)
+- {static} void enterOrSpaceAction()
+- {static} void gameStart()
+- {static} void gamePlaying()
+- {static} void gameNewLevel()
+- {static} void gameOneLessLife()
+- {static} void gameFinish()
+- {static} void processInput()
+}
+class Renderer {
+~ GraphicsContext gc
+~ GameManager gameManager
++ <<Create>> Renderer(GraphicsContext,GameManager)
++ void drawStart()
+- void write(double,double,double,String,String)
+- void clearScreen(Color)
++ void drawBoard()
++ void drawYouWon()
++ void drawYouLost()
+- void drawFinish(String)
++ void drawNewLevel(int)
++ void drawOneLessLife()
+- void pressEnterToContinue()
+}
+class EnemySpawner {
++ {static} int n
++ {static} int m
++ {static} int vx
++ {static} int vy
++ {static} int ticks
+- {static} int getX(Rect,int)
+- {static} int getY(Rect,int)
++ {static} List<AEnemy> createEnemies(Rect,int)
++ {static} EnemyShip createEnemyShip(EEnemyType,Image,Rect,int,int,int,int,EEnemyShot)
++ {static} EnemyBarrier createEnemyBarrier(EEnemyType,Image,int,Rect,int,int,int)
++ {static} List<AEnemy> crearEnemigosNivelBarricada(Rect)
++ {static} List<AEnemy> crearEnemigosNivelDonut(Rect)
++ {static} List<AEnemy> crearEnemigosNivelPaquito(Rect)
++ {static} List<AEnemy> crearEnemigosNivelLambada(Rect)
++ {static} List<AEnemy> crearEnemigosNivelPulpo(Rect)
++ {static} List<AEnemy> crearEnemigosNivelRock(Rect)
++ {static} List<AEnemy> crearEnemigosNivelBarricadaConMuro(Rect)
++ {static} List<AEnemy> crearEnemigosNivelRockConMuroDescendente(Rect)
++ {static} List<AEnemy> crearEnemigosNivelPulpoConTorres(Rect)
++ {static} List<AEnemy> crearMonstruo(Rect)
+}
+class AppStatus {
+- EAppStatus value
+- int level
+- Integer lifes
++ <<Create>> AppStatus()
++ int getLevel()
++ int getLifes()
++ void setLevel(int)
++ void setLifes(int)
++ EAppStatus getValue()
++ void quit()
++ void start()
++ void nextLevel()
++ void sameLevel()
++ void finish()
++ void oneLessLife()
++ void newLevel()
+}
+
+
+@enduml

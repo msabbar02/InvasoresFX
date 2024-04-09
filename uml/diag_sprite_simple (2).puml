@@ -1,0 +1,51 @@
+@startuml
+interface IHaveShield {
+}
+class SpriteTemp {
+}
+class weaponry.Cannonball {
+}
+class weaponry.Laserbeam {
+}
+class weaponry.Gun {
+}
+class Ship {
+}
+abstract class weaponry.AShot {
+}
+abstract class ASprite {
+}
+class LifesSprite {
+}
+abstract class AEnemy {
+}
+interface ICanShoot {
+}
+abstract class weaponry.AWeapon {
+}
+class EnemyShip {
+}
+class EnemyShipDiagonal {
+}
+interface ICanSpawn {
+}
+class EnemyShipGroup {
+}
+
+
+ASprite <|-- SpriteTemp
+weaponry.AShot <|-- weaponry.Cannonball
+weaponry.AShot <|-- weaponry.Laserbeam
+weaponry.AWeapon <|-- weaponry.Gun
+ASprite <|-- Ship
+ASprite <|-- weaponry.AShot
+ASprite <|-- LifesSprite
+ICanShoot <|.. AEnemy
+ASprite <|-- AEnemy
+AEnemy <|-- EnemyShip
+AEnemy --> AWeapon
+EnemyShip <|-- EnemyShipDiagonal
+EnemyShip <|-- EnemyShipGroup
+EnemyShipGroup o-- EnemyShip
+AWeapon ..> AShot
+@enduml

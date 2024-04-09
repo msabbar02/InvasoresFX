@@ -1,0 +1,195 @@
+@startuml
+enum com.aetxabao.invasoresfx.game.enums.EEnemyShot {
++  E_SHOT_NOTHING
++  E_SHOT_GUN
+}
+class com.aetxabao.invasoresfx.game.GameManager {
+- Rect gameRect
+- Ship ship
+# LifesSprite lifesSprite
+# List<AShot> shotsUp
+# List<AShot> shotsDown
+# List<AEnemy> enemies
+# List<SpriteTemp> temps
++ int score
+- AppStatus appStatus
+- {static} Logger log
++ <<Create>> GameManager(Rect,AppStatus)
++ void start()
++ void nextLevel()
++ void sameLevel()
+- void clearLevel()
++ void finish()
++ int getWidth()
++ double getHeight()
++ int getLevel()
++ Ship getShip()
++ void shot()
++ void updateGame()
+}
+class com.aetxabao.invasoresfx.game.AppInvasoresFx {
+- {static} GraphicsContext gc
+- {static} GameManager gameManager
+- {static} Rect gameRect
+- long deltaTime
+- {static} Renderer renderer
+- {static} BooleanProperty wPressed
+- {static} BooleanProperty aPressed
+- {static} BooleanProperty sPressed
+- {static} BooleanProperty dPressed
+- {static} BooleanProperty shotReleased
+- {static} AppStatus appStatus
+- {static} Logger log
++ {static} void main(String[])
++ void start(Stage)
+- void setup(Stage)
+- {static} void setEventActions(Scene)
+- {static} void enterOrSpaceAction()
+- {static} void gameStart()
+- {static} void gamePlaying()
+- {static} void gameNewLevel()
+- {static} void gameOneLessLife()
+- {static} void gameFinish()
+- {static} void processInput()
+}
+class com.aetxabao.invasoresfx.game.Renderer {
+~ GraphicsContext gc
+~ GameManager gameManager
++ <<Create>> Renderer(GraphicsContext,GameManager)
++ void drawStart()
+- void write(double,double,double,String,String)
+- void clearScreen(Color)
++ void drawBoard()
++ void drawYouWon()
++ void drawYouLost()
+- void drawFinish(String)
++ void drawNewLevel(int)
++ void drawOneLessLife()
+- void pressEnterToContinue()
+}
+class com.aetxabao.invasoresfx.game.AppConsts {
++ {static} URL LOG4J_PROPERTIES
++ {static} String SYSTEM_PROPERTY
+~ {static} String APP_TITLE
++ {static} int BOARD_MARGIN_TOP
+~ {static} int BOARD_WIDTH
+~ {static} int BOARD_HEIGHT
+~ {static} double GAME_SPEED
+~ {static} Image ICON_16
+~ {static} Image ICON_32
+~ {static} Image ICON_64
+~ {static} Image ICON_128
+~ {static} int LEVELS
+~ {static} int TICKSxFRAME
+~ {static} Image ENEMYSHIP_SPRITE_IMAGE_1
+~ {static} Image ENEMYSHIP_SPRITE_IMAGE_2
+~ {static} Image ENEMYSHIP_SPRITE_IMAGE_3
+~ {static} Image ENEMYBARRIER4_SPRITE_IMAGE
+~ {static} Image ENEMYTOWER3_SPRITE_IMAGE
+~ {static} int INIT_LEVEL
+~ {static} int INIT_LIFES
+~ {static} int PTS_ENEMYSHIP
+~ {static} int PTS_NEWLEVEL
+~ {static} Image SHIP_SPRITE_IMAGE
+~ {static} Image LIFES_SPRITE_IMAGE
+~ {static} Image LASER_SPRITE_IMAGE
+~ {static} Image EXPLOSION_9_SPRITE_IMAGE
+~ {static} Image EXPLOSION_12_SPRITE_IMAGE
+~ {static} double MARGIN_LEFT
+~ {static} double MARGIN_TOP
+~ {static} String TXT_YOU_CAN
+~ {static} String TXT_PRESS_ENTER
+~ {static} String TXT_TO_START
+~ {static} String TXT_TO_CONTINUE
+~ {static} String TXT_YOU_WON
+~ {static} String TXT_YOU_LOST
+~ {static} String TXT_LEVEL
+~ {static} String TXT_POINTS
+~ {static} Image COVER_IMAGE
+~ {static} Font FONT_HELVETICA_16
+~ {static} Font FONT_HELVETICA_52
++ {static} Image BALL_SPRITE_IMAGE
++ {static} int SHIP_ROWS
++ {static} int SHIP_COLS
++ {static} int SHIP_UP
++ {static} int SHIP_DOWN
++ {static} int SHIP_RIGHT
++ {static} int SHIP_LEFT
++ {static} int SHIP_MAX_SPEED
++ {static} int ENEMYSHIP_ROWS
++ {static} int ENEMYSHIP_COLS
++ {static} int ENEMYSHIP_MAX_SPEED
++ {static} double ENEMYSHIP_ALFA
++ {static} int ENEMYBARRIER_ROWS
++ {static} int ENEMYBARRIER_COLS
++ {static} int ENEMYTOWER_ROWS
++ {static} int ENEMYTOWER_COLS
++ {static} double ENEMYMONSTER_ALFA
++ {static} int LIFES_ROWS
++ {static} int LIFES_COLS
++ {static} double LIFES_ALFA
+- <<Create>> AppConsts()
+}
+enum com.aetxabao.invasoresfx.game.enums.EEnemyType {
++  E_NORMAL
++  E_ONEWAY
++  E_DIAGONAL
++  E_SINU
++  E_ROCKET
++  E_BARRIER
++  E_BARRIERDOWN
++  E_TOWER
+}
+class com.aetxabao.invasoresfx.game.EnemySpawner {
++ {static} int n
++ {static} int m
++ {static} int vx
++ {static} int vy
++ {static} int ticks
+- {static} int getX(Rect,int)
+- {static} int getY(Rect,int)
++ {static} List<AEnemy> createEnemies(Rect,int)
++ {static} EnemyShip createEnemyShip(EEnemyType,Image,Rect,int,int,int,int,EEnemyShot)
++ {static} EnemyBarrier createEnemyBarrier(EEnemyType,Image,int,Rect,int,int,int)
++ {static} List<AEnemy> crearEnemigosNivelBarricada(Rect)
++ {static} List<AEnemy> crearEnemigosNivelDonut(Rect)
++ {static} List<AEnemy> crearEnemigosNivelPaquito(Rect)
++ {static} List<AEnemy> crearEnemigosNivelLambada(Rect)
++ {static} List<AEnemy> crearEnemigosNivelPulpo(Rect)
++ {static} List<AEnemy> crearEnemigosNivelRock(Rect)
++ {static} List<AEnemy> crearEnemigosNivelBarricadaConMuro(Rect)
++ {static} List<AEnemy> crearEnemigosNivelRockConMuroDescendente(Rect)
++ {static} List<AEnemy> crearEnemigosNivelPulpoConTorres(Rect)
++ {static} List<AEnemy> crearMonstruo(Rect)
+}
+enum com.aetxabao.invasoresfx.game.enums.EAppStatus {
++  E_APP_START
++  E_APP_PLAYING
++  E_APP_NEWLEVEL
++  E_APP_ONELESSLIFE
++  E_APP_WON
++  E_APP_LOST
++  E_APP_QUIT
+}
+class com.aetxabao.invasoresfx.game.AppStatus {
+- EAppStatus value
+- int level
+- Integer lifes
++ <<Create>> AppStatus()
++ int getLevel()
++ int getLifes()
++ void setLevel(int)
++ void setLifes(int)
++ EAppStatus getValue()
++ void quit()
++ void start()
++ void nextLevel()
++ void sameLevel()
++ void finish()
++ void oneLessLife()
++ void newLevel()
+}
+
+
+javafx.application.Application <|-- com.aetxabao.invasoresfx.game.AppInvasoresFx
+@enduml

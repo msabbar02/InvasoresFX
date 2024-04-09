@@ -1,0 +1,25 @@
+@startuml
+enum enums.EEnemyShot {
++  E_SHOT_NOTHING
++  E_SHOT_GUN
+}
+enum enums.EEnemyType {
++  E_NORMAL
++  E_ONEWAY
++  E_DIAGONAL
++  E_SINU
++  E_ROCKET
++  E_BARRIER
++  E_BARRIERDOWN
++  E_TOWER
+}
+enum enums.EAppStatus {
++  E_APP_START
++  E_APP_PLAYING
++  E_APP_NEWLEVEL
++  E_APP_ONELESSLIFE
++  E_APP_WON
++  E_APP_LOST
++  E_APP_QUIT
+}
+@enduml
